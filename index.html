@@ -1,0 +1,829 @@
+```html
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Developer Salary Predictor India</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #07111f;
+    --card: #101e30;
+    --border: #26364b;
+    --text: #f1f5f9;
+    --muted: #9caec3;
+    --primary: #38bdf8;
+    --green: #34d399;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+header {
+    padding: 22px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+    background: #091525;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.badge {
+    color: var(--green);
+    background: #12352f;
+    border: 1px solid #236451;
+    border-radius: 30px;
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.hero {
+    text-align: center;
+    padding: 55px 20px 35px;
+}
+
+.hero h1 {
+    font-size: clamp(29px, 5vw, 48px);
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+.hero p {
+    max-width: 650px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 0 18px 45px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    gap: 22px;
+    align-items: start;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 12px 35px #00000020;
+}
+
+.card h2 {
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+
+.description {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input[type="number"],
+select {
+    width: 100%;
+    background: #091525;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 18px;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--primary);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.skill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #091525;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 10px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.skill input {
+    accent-color: var(--primary);
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.predict-btn {
+    background: var(--primary);
+    color: #07111f;
+}
+
+button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+.reset-btn {
+    margin-top: 10px;
+    background: #1b2c40;
+    color: white;
+    border: 1px solid var(--border);
+}
+
+.result-card {
+    text-align: center;
+}
+
+.result-icon {
+    font-size: 35px;
+    margin-bottom: 8px;
+}
+
+.result-label {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.salary {
+    font-size: clamp(27px, 4vw, 38px);
+    font-weight: bold;
+    color: var(--green);
+    margin: 10px 0;
+    overflow-wrap: anywhere;
+}
+
+.per-year {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.range-box {
+    background: #091525;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 22px;
+}
+
+.range-title {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.range-values {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.range-values strong {
+    color: var(--text);
+}
+
+.chart {
+    margin-top: 25px;
+    text-align: left;
+}
+
+.chart h3 {
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+
+.bar-row {
+    margin-bottom: 15px;
+}
+
+.bar-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 12px;
+    margin-bottom: 7px;
+}
+
+.bar-heading span:last-child {
+    color: var(--green);
+    text-align: right;
+}
+
+.track {
+    height: 8px;
+    background: #26364b;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #38bdf8, #34d399);
+    border-radius: 20px;
+    transition: width 0.6s ease;
+}
+
+.note {
+    margin-top: 22px;
+    padding: 13px;
+    background: #172638;
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: left;
+}
+
+.status {
+    margin-top: 15px;
+    font-size: 13px;
+    color: var(--green);
+    min-height: 20px;
+}
+
+footer {
+    text-align: center;
+    border-top: 1px solid var(--border);
+    padding: 24px 15px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+@media (max-width: 760px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding-top: 40px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    header {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 380px) {
+    .row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .skills {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🇮🇳 Salary<span>AI</span></div>
+    <div class="badge">● Interactive Salary Estimator</div>
+</header>
+
+<section class="hero">
+    <h1>Indian Developer<br><span>Salary Predictor</span></h1>
+    <p>
+        अपनी skills, experience और job location चुनें।
+        भारतीय रुपये में अपनी अनुमानित सालाना सैलरी देखें।
+    </p>
+</section>
+
+<main class="container">
+
+<div class="layout">
+
+    <!-- INPUT FORM -->
+    <section class="card">
+        <h2>👨‍💻 Developer Details</h2>
+        <p class="description">
+            अपनी जानकारी भरें और अनुमान प्राप्त करें।
+        </p>
+
+        <form id="salaryForm">
+
+            <label for="role">Job Role</label>
+            <select id="role" required>
+                <option value="frontend">Frontend Developer</option>
+                <option value="backend">Backend Developer</option>
+                <option value="fullstack">Full Stack Developer</option>
+                <option value="mobile">Mobile App Developer</option>
+                <option value="analyst">Data Analyst</option>
+                <option value="datascientist">Data Scientist</option>
+                <option value="ai">AI / ML Engineer</option>
+                <option value="devops">DevOps Engineer</option>
+                <option value="security">Cybersecurity Engineer</option>
+            </select>
+
+            <div class="row">
+                <div>
+                    <label for="experience">Experience (Years)</label>
+                    <input
+                        type="number"
+                        id="experience"
+                        min="0"
+                        max="40"
+                        step="1"
+                        value="2"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="city">Job Location</label>
+                    <select id="city">
+                        <option value="1">Other Indian Cities</option>
+                        <option value="1.25">Bengaluru</option>
+                        <option value="1.20">Mumbai</option>
+                        <option value="1.18">Gurugram</option>
+                        <option value="1.15">Hyderabad</option>
+                        <option value="1.12">Pune</option>
+                        <option value="1.10">Delhi / NCR</option>
+                        <option value="1.08">Chennai</option>
+                        <option value="0.90">Smaller Cities</option>
+                    </select>
+                </div>
+            </div>
+
+            <label for="education">Education</label>
+            <select id="education">
+                <option value="0.90">School / Diploma / Other</option>
+                <option value="1.00" selected>Bachelor's Degree</option>
+                <option value="1.08">Master's Degree</option>
+            </select>
+
+            <label>Technical Skills</label>
+
+            <div class="skills">
+                <label class="skill">
+                    <input type="checkbox" name="skill" value="python">
+                    Python
+                </label>
+
+                <label class="skill">
+                    <input type="checkbox" name="skill" value="java">
+                    Java
+                </label>
+
+                <label class="skill">
+                    <input type="checkbox" name="skill" value="javascript" checked>
+                    JavaScript
+                </label>
+
+                <label class="skill">
+                    <input type="checkbox" name="skill" value="sql">
+                    SQL
+                </label>
+
+                <label class="skill">
+                    <input type="checkbox" name="skill" value="cloud">
+                    Cloud / DevOps
+                </label>
+
+                <label class="skill">
+                    <input type="checkbox" name="skill" value="aiml">
+                    AI / ML
+                </label>
+            </div>
+
+            <button type="submit" class="predict-btn">
+                ✨ Predict My Salary
+            </button>
+
+            <button type="reset" class="reset-btn">
+                Reset Form
+            </button>
+
+            <p class="status" id="status" aria-live="polite"></p>
+
+        </form>
+    </section>
+
+    <!-- RESULT PANEL -->
+    <section class="card result-card">
+
+        <div class="result-icon">📊</div>
+        <h2>Salary Prediction</h2>
+
+        <p class="description">
+            आपके चुने हुए विवरणों के आधार पर
+        </p>
+
+        <p class="result-label">Estimated Annual Salary</p>
+
+        <div class="salary" id="salary" aria-live="polite">
+            ₹5,50,000
+        </div>
+
+        <p class="per-year">प्रति वर्ष (INR)</p>
+
+        <div class="range-box">
+            <div class="range-title">
+                अनुमानित सालाना सैलरी रेंज
+            </div>
+
+            <div class="range-values">
+                <div>
+                    <strong id="minimum">₹4,67,500</strong>
+                    <br>Minimum
+                </div>
+
+                <div style="text-align:right">
+                    <strong id="maximum">₹6,32,500</strong>
+                    <br>Maximum
+                </div>
+            </div>
+        </div>
+
+        <div class="chart">
+            <h3>📈 Role के अनुसार अनुमान</h3>
+
+            <div id="comparison"></div>
+        </div>
+
+        <div class="note">
+            <strong>⚠️ Disclaimer:</strong>
+            यह शैक्षणिक प्रोजेक्ट है। इसके आंकड़े
+            उदाहरण के लिए चुने गए अनुमानित नियमों पर आधारित हैं,
+            किसी वास्तविक salary dataset या trained AI model पर नहीं।
+            असली सैलरी कंपनी, skills, interview, नौकरी के स्तर और
+            बाजार की स्थिति के अनुसार बदल सकती है।
+        </div>
+
+    </section>
+
+</div>
+</main>
+
+<footer>
+    <p>SalaryAI India | Learning Project</p>
+    <p style="margin-top:5px">
+        Made for learning HTML, CSS and JavaScript
+    </p>
+</footer>
+
+<script>
+
+// -------------------------------------------------
+// 1. DEMONSTRATION SALARY VALUES
+// ये वास्तविक सर्वेक्षण के आंकड़े नहीं हैं।
+// इन्हें सीखने के लिए चुना गया है।
+// सभी रकम सालाना INR में हैं।
+// -------------------------------------------------
+
+const roles = {
+    frontend: {
+        name: "Frontend Developer",
+        base: 450000
+    },
+    backend: {
+        name: "Backend Developer",
+        base: 550000
+    },
+    fullstack: {
+        name: "Full Stack Developer",
+        base: 600000
+    },
+    mobile: {
+        name: "Mobile App Developer",
+        base: 550000
+    },
+    analyst: {
+        name: "Data Analyst",
+        base: 480000
+    },
+    datascientist: {
+        name: "Data Scientist",
+        base: 700000
+    },
+    ai: {
+        name: "AI / ML Engineer",
+        base: 800000
+    },
+    devops: {
+        name: "DevOps Engineer",
+        base: 700000
+    },
+    security: {
+        name: "Cybersecurity Engineer",
+        base: 650000
+    }
+};
+
+// -------------------------------------------------
+// 2. SKILL ADJUSTMENTS
+// ये भी केवल demonstration values हैं।
+// -------------------------------------------------
+
+const skillBonus = {
+    python: 0.05,
+    java: 0.04,
+    javascript: 0.04,
+    sql: 0.03,
+    cloud: 0.07,
+    aiml: 0.08
+};
+
+// Indian Rupee formatter
+
+function formatINR(amount) {
+    return new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0
+    }).format(Math.round(amount));
+}
+
+// -------------------------------------------------
+// 3. SALARY CALCULATION
+// -------------------------------------------------
+
+function calculateSalary(roleKey, experience, cityFactor,
+                         educationFactor, selectedSkills) {
+
+    const role = roles[roleKey];
+
+    // Experience growth: demonstration formula
+    const experienceFactor = 1 + Math.min(experience, 15) * 0.12;
+
+    // Skill adjustment
+    let bonus = 0;
+
+    selectedSkills.forEach(function(skill) {
+        bonus += skillBonus[skill] || 0;
+    });
+
+    // Skill bonus capped at 25%
+    bonus = Math.min(bonus, 0.25);
+
+    // Estimated annual salary
+    const estimate = role.base
+        * experienceFactor
+        * cityFactor
+        * educationFactor
+        * (1 + bonus);
+
+    return Math.round(estimate / 1000) * 1000;
+}
+
+// -------------------------------------------------
+// 4. COMPARISON CHART
+// -------------------------------------------------
+
+function renderComparison(selectedSalary, experience,
+                          cityFactor, educationFactor,
+                          selectedSkills, selectedRole) {
+
+    const comparison = document.getElementById("comparison");
+
+    const sortedRoles = Object.entries(roles)
+        .map(function(entry) {
+            const key = entry[0];
+
+            const salary = calculateSalary(
+                key,
+                experience,
+                cityFactor,
+                educationFactor,
+                selectedSkills
+            );
+
+            return {
+                key: key,
+                name: entry[1].name,
+                salary: salary
+            };
+        })
+        .sort(function(a, b) {
+            return b.salary - a.salary;
+        })
+        .slice(0, 5);
+
+    const maxSalary = Math.max(
+        ...sortedRoles.map(item => item.salary),
+        selectedSalary
+    );
+
+    comparison.innerHTML = "";
+
+    sortedRoles.forEach(function(item) {
+        const width = Math.max(
+            4,
+            (item.salary / maxSalary) * 100
+        );
+
+        const row = document.createElement("div");
+        row.className = "bar-row";
+
+        const heading = document.createElement("div");
+        heading.className = "bar-heading";
+
+        const name = document.createElement("span");
+        name.textContent = item.name +
+            (item.key === selectedRole ? " ★" : "");
+
+        const amount = document.createElement("span");
+        amount.textContent = formatINR(item.salary);
+
+        heading.appendChild(name);
+        heading.appendChild(amount);
+
+        const track = document.createElement("div");
+        track.className = "track";
+
+        const bar = document.createElement("div");
+        bar.className = "bar";
+        bar.style.width = width + "%";
+
+        track.appendChild(bar);
+        row.appendChild(heading);
+        row.appendChild(track);
+
+        comparison.appendChild(row);
+    });
+}
+
+// -------------------------------------------------
+// 5. FORM SUBMISSION
+// -------------------------------------------------
+
+const form = document.getElementById("salaryForm");
+
+function predictSalary(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+    const roleKey = document.getElementById("role").value;
+
+    const experience = Number(
+        document.getElementById("experience").value
+    );
+
+    const cityFactor = Number(
+        document.getElementById("city").value
+    );
+
+    const educationFactor = Number(
+        document.getElementById("education").value
+    );
+
+    const status = document.getElementById("status");
+
+    if (
+        !Number.isFinite(experience) ||
+        experience < 0 ||
+        experience > 40 ||
+        !Number.isInteger(experience)
+    ) {
+        status.style.color = "#f87171";
+        status.textContent =
+            "कृपया 0 से 40 के बीच पूरे वर्षों में अनुभव दर्ज करें।";
+        return;
+    }
+
+    const selectedSkills = Array.from(
+        document.querySelectorAll('input[name="skill"]:checked')
+    ).map(function(input) {
+        return input.value;
+    });
+
+    const salary = calculateSalary(
+        roleKey,
+        experience,
+        cityFactor,
+        educationFactor,
+        selectedSkills
+    );
+
+    const minimum = salary * 0.85;
+    const maximum = salary * 1.15;
+
+    document.getElementById("salary").textContent =
+        formatINR(salary);
+
+    document.getElementById("minimum").textContent =
+        formatINR(minimum);
+
+    document.getElementById("maximum").textContent =
+        formatINR(maximum);
+
+    renderComparison(
+        salary,
+        experience,
+        cityFactor,
+        educationFactor,
+        selectedSkills,
+        roleKey
+    );
+
+    status.style.color = "#34d399";
+    status.textContent =
+        "✓ अनुमान तैयार है! यह वास्तविक बाजार डेटा पर आधारित नहीं है।";
+}
+
+// Predict when the form is submitted
+form.addEventListener("submit", predictSalary);
+
+// Reset result when form is reset
+form.addEventListener("reset", function() {
+
+    setTimeout(function() {
+        document.getElementById("salary").textContent =
+            formatINR(roles.frontend.base * 1.12);
+
+        document.getElementById("minimum").textContent =
+            formatINR(roles.frontend.base * 1.12 * 0.85);
+
+        document.getElementById("maximum").textContent =
+            formatINR(roles.frontend.base * 1.12 * 1.15);
+
+        document.getElementById("status").textContent = "";
+
+        predictSalary();
+    }, 0);
+
+});
+
+// Initial prediction
+predictSalary();
+
+</script>
+
+</body>
+</html>
+```
